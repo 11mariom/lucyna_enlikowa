@@ -47,8 +47,8 @@ while true do
       else
 	 for i, v in ipairs( core.raw ) do
 	    if s:find( v.cmd ) then
-	       --cmd:send( core[ v.plugin ]:actionRaw( s ) )
-	       cmd:send( core.cmd[ v ]:callBack( s ) )
+	       cmd:send( core[ v.plugin ]:actionRaw( s ) )
+	       --cmd:send( core.cmd[ v ]:callBack( s ) )
 	    end
 	 end
 --	 print( s )
