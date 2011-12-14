@@ -8,20 +8,16 @@ function plugin.init()
    local data = {}
    setmetatable( data, plugin )
 
-   data.name = "pong"
+   data.name = "hello"
    data.author = "mariom"
    data.version = "0.1"
-   data.type = { "cmd", "raw" }
-   data.cmd = cmdChar .. "ping"
-   data.raw = "PING"
+   data.type = { "cmd" }
+   data.cmd = "cześć"
 
    return data
 end
 
 function plugin:actionCmd()
-   return "pong"
+   return "witaj na kanale " .. msg.chan .. "!"
 end
 
-function plugin:actionRaw( _cmd )
-   return "PONG :" .. _cmd:sub(6)
-end
