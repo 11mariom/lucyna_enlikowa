@@ -63,15 +63,20 @@ end
 
 -- PLUGIN API
 function core:registerHook( _plugin )
---   for i, v in ipairs( self[ _plugin ].type ) do
-   table.insert( self.cmd, { cmd = self[ _plugin ].cmd, plugin = _plugin } )
-   table.insert( self.raw, { cmd = self[ _plugin ].raw, plugin = _plugin } )
---   table.insert( self.cmd, { cmd = self[ _plugin ].cmd, plugin = _plugin } )
---   table.insert( self.raw, { cmd = self[ _plugin ].raw, plugin = _plugin } )
+   for i, v in ipairs( self[ _plugin ].type ) do
+      table.insert( self[v], { cmd = self[ _plugin ][v], plugin = _plugin, 
+			       name = self[ _plugin ].name } )
+   end
 end
 
 function core:unregisterHook( _plugin )
+   for i, v in ipairs( self.cmd ) do
 
+      if v.name:find( _plugin ) then
+	 self.cmd[i] = nil
+      end
+
+   end
 end
 
 function core:pluginLoad( _plugin )
@@ -82,6 +87,7 @@ function core:pluginLoad( _plugin )
 end
 
 function core:pluginUnload( _plugin )
+   self:unregisterHook( _plugin )
 
+   package.loaded[ _plugin ] = nil
 end
-
