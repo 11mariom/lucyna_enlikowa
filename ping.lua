@@ -23,5 +23,5 @@ function plugin:actionCmd()
 end
 
 function plugin:actionRaw( _cmd )
-   return "PONG :" .. _cmd:sub(6)
+   return "PONG :" .. _cmd:sub(7)
 end

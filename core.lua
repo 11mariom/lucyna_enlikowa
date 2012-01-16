@@ -84,10 +84,18 @@ function core:pluginLoad( _plugin )
    self[ _plugin ] = plugin.init()
 
    self:registerHook( _plugin )
+
+   table.insert( self.plugins, _plugin )
 end
 
 function core:pluginUnload( _plugin )
    self:unregisterHook( _plugin )
 
    package.loaded[ _plugin ] = nil
+
+   for i, v in pairs( self.plugins ) do
+      if v == _plugin then
+	 table.remove( self.plugins, i )
+      end
+   end
 end
