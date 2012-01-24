@@ -34,6 +34,14 @@ function plugin:actionCmd()
 
 	 return msg.nick .. ": plugin " .. plug .. " unloaded"
       end
+   elseif opt == "reload" then
+      if self:check( plug ) == 0 then
+	 core:pluginUnload( plug )
+	 core:pluginLoad( plug )
+	 return msg.nick .. ": plugin " .. plug .. " reloaded"
+      else
+	 return msg.nick .. ": plugin " .. plug .. " not loaded!"
+      end
    elseif opt == "list" then
       load=""
 

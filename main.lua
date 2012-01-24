@@ -6,6 +6,7 @@ chan = "#mariom-test"
 host = "irc.freenode.net"
 port = 6667
 cmdChar = "'"
+admin = "mariom!mariom@unaffiliated/mariom"
 
 -- Załadowanie rdzenia
 require( "core" )
@@ -48,6 +49,10 @@ while true do
 	    end
 
 	 end
+
+      elseif s:match("ERROR :Closing Link: ") then
+	 print( "Bot shutdown - see you later" )
+	 return 0
 
       else
 	 for i, v in ipairs( core.raw ) do
